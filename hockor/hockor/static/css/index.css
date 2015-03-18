@@ -1,0 +1,758 @@
+body{
+	font-family: "微软雅黑",Arial;
+	color:#956872;
+}
+*{
+	margin:0px;
+	padding:0px;
+}
+ul{
+	margin: 0px;
+	padding:0px;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+fieldset{
+	border:none;
+}
+#header{
+    width: 1000px;
+	height:200px;
+	position:relative;
+	margin:0 auto;
+}
+.logo{
+    width: 270px;
+    height: 290px;
+    float: left;
+    position: relative;
+    margin-top: -119px;
+    background: url(../img/logo.png) no-repeat center center;
+    background-size: 100%;
+    background-position-y: 146px;
+    background-position-x: 7px;
+    border: solid 1px #C4C4C4;
+    box-shadow: 0 0 1em #C4C4C4;
+    border-radius: 160px;
+}
+.logo:hover{
+	margin-top:-100px;
+	border:solid 1px #C4C4C4;
+	box-shadow: 0 0 3em #C4C4C4;
+	border-radius: 160px;
+	cursor:pointer;
+}
+.logo-1{
+	width:150px;
+	height: 50px;
+	margin-right: auto;	
+	margin-left: auto;	
+}
+.logo-2{
+	width:180px;
+	height: 30px;	
+	margin-top:140px;	
+	margin-left: 75px;
+}
+.logo-1 li{
+	float:left;
+	width:50px;
+	height: 50px;
+}
+.logo-2 li{
+	float:left;
+	height: 37px;
+}
+
+/*---------------------------nav-------------------------------*/
+#nav{
+	width:720px;
+	height:80px;
+	float:right;
+	position: relative;
+
+}
+#nav a{
+	display: block;
+	float:left;
+	width:120px;
+	height:100px;
+	margin-top:40px;
+	background: url("../img/nav_bg_new.png") no-repeat;
+}
+#nav a:hover{
+	margin-top:60px;
+	cursor:pointer;
+}
+#nav a span{
+	display: block;
+	width:65px;
+	height:20px;
+	margin:0 auto;
+	color:#956872;
+	text-align: center;
+}
+#nav a .img{
+	font-size: 16px;
+	font-weight:bold;
+	margin-top: 20px;
+}
+#nav a .shadow{
+	font-size: 12px;
+}
+/*-----------------------底部---------------------------*/
+.footer{
+	width:100%;
+    min-width: 1200px;
+    _width:1200px;
+	height:88px;
+	margin-top: 80px;
+	background-color: #413235;
+}
+#footerNav{
+	width:720px;
+	height:20px;
+	position: relative;
+	top:28px;
+	margin: auto;
+}
+
+#footerNav a{
+	display: block;
+	float:left;
+	width:100px;
+	color:#A39582;
+	text-align: center;
+	font-size: 14px;
+	border-right:solid 1px #A39582;
+}
+#footerNav a:hover{
+	color:#fff;
+	font-size: 14px;
+	cursor:pointer;
+}
+#footerNav a:after{
+    content:"."; display:block; height:0; visibility:hidden; clear:both;
+}
+
+#footerNav .last{
+	border-right:none;
+}
+#copyRight{
+	width:720px;
+	height:20px;
+	color:#A39582;
+	font-size:14px;
+	text-align: center;
+	position: relative;
+	top:40px;
+	margin: auto;
+}
+/*------------------------------list.html（怎么将li的数量根据数据库里面的不同的书的不同而做出相应的自适应？？）--------------------------*/
+.round{
+	width:315px;
+	height:303px;
+	position: relative;
+	margin:0 auto;
+	background: url("../img/cJsBg.png") no-repeat;
+}
+.round .r-subject{
+	display: block;
+	position: absolute;
+	top:120px;
+	left:70px;
+	color:#956872;
+	font-size: 28px;
+	font-weight: bold;
+}
+.round .r-teacher{
+	display: block;
+	position: absolute;
+	top:190px;
+	left:170px;
+	color:#956872;
+	font-size: 18px;
+	font-weight: bold;
+}
+.list{
+	width:700px;
+	padding:50px;
+	box-shadow: 10px 10px #C4C4C4;
+	margin:5px auto;
+	border: solid 1px #C4C4C4;
+	background: #F5F5F5;
+}
+.list:hover{
+	box-shadow: 0 0 4em #898686;
+	cursor:pointer;
+}
+.list .catalog{
+	text-align: center;
+	font-size: 40px;
+	color:#956872;
+}
+.list .l-content{
+	width:700px;
+	margin-top: 20px;
+}
+.list .l-content ul li{
+	height:35px;
+	font-size: 16px;
+	color:#3B3B3B;
+	background: #fff;
+}
+.list .l-content ul li:hover{
+	height:50px;
+	font-size: 20px;
+	font-weight: bold;
+	cursor:pointer;
+}
+.list .l-content ul .cs1{
+	width:18%;
+	display: block;
+	float: left;
+	text-align: center;
+	border-bottom:solid 1px #D6D6D6;
+}
+.list .l-content ul .cs1-content{
+	width:70%;
+	display: block;
+	float: left;
+	border-bottom:solid 1px #D6D6D6;
+}
+.list .l-content ul .cs1-together{
+	width:12%;
+	display: block;
+	float: left;
+	border-bottom:solid 1px #D6D6D6;
+}
+.start-s,.start-t{
+	width:197px;
+	height:42px; 
+	font-size: 18px;
+	color:#fff;
+	background: url("../img/iCourseBtn.png") no-repeat;
+	border:none;
+	margin-top:20px;
+	margin-left:110px;
+}
+.start-s:hover,.start-t:hover{
+	font-size: 22px;
+	font-weight: bold;
+	color:#fff;
+	cursor:pointer;
+}
+/*---------------------------about高度自适应：不要设置高度！-------------------------*/
+.description{
+	width:800px;
+	margin:5px auto;
+	background: #fff;
+	padding:50px;
+	color:#956872;
+	box-shadow: 3px 5px  15px #C4C4C4;
+}
+.description:hover{
+	box-shadow: 0 0 4em #898686;
+	cursor:pointer;
+}
+.description .qweike{
+	font-size: 25px;
+	margin-bottom: 18px;
+}
+.description .content{
+	font-size: 18px;
+	line-height: 1.5;
+}
+.description .made{
+	font-size: 18px;
+	text-align: right;
+}
+/*----------------------------video.html----------------------------------*/
+.video{
+	width:1100px;
+	height:450px;
+	margin:0 auto;
+}
+.video video{
+	width:580px;
+	height:400px;
+	float:left;
+}
+.video .introduce{
+	float: left;
+	width:420px;
+	padding:50px;
+	color:#956872;
+	font-size: 16px;
+	line-height: 20px;
+}
+.video .introduce .title{
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 20px;
+}
+.video .introduce .content{
+	line-height: 25px;
+}
+/*-----------------------------test.html-----------------------------------*/
+.question{
+	width:900px;
+	color:#956872;
+	margin:0px auto 40px auto;
+}
+.question form p{
+	width:900px;
+	display: block;
+	margin:20px 0px;
+	font-size: 18px;
+	line-height: 14px;
+	padding-bottom:10px;
+	padding-left: 20px;
+	background: url("../img/iCourseIco1.png") no-repeat;
+}
+.question form label{
+	margin:0px 80px;
+}
+#test{
+	width: 197px;
+	height:42px;
+	font-size: 20px;
+	border:none;
+	font-weight: bold;
+	margin-left: 600px;
+	color: #fff;
+    cursor: pointer;
+	background: #e43257;
+    border-radius: 50px;
+}
+.test{
+	width: 900px;
+	margin:20px auto;
+}
+.test li a{
+	float: left;
+	width: 24px;
+	height:24px;
+	font-size: 14px;
+	line-height: 24px;
+	text-align: center;
+	margin-left: 50px;
+	border-radius: 12px;
+	background: #e43257;
+    border-radius: 50%;
+}
+.test li a{ 
+	color:#fff;
+}
+.test li a:hover{ 
+	color:#fff;
+	font-size: 18px;
+	background: #cd032d;
+	cursor:pointer;
+}
+/*----------------------content.html-------------------------------*/
+.c-brief{
+	width:244px;
+	height:218px;
+	padding:40px;
+	color:#956872;
+	background: url("../img/iContactBg.png") no-repeat;
+	margin:0 auto;
+}
+.c-brief .title{
+	font-size: 26px;
+}
+.c-brief .content{
+	font-size: 16px;
+	line-height: 28px;
+	margin-top: 10px;
+}
+.c-word{
+	width: 900px;
+	height: 270px;
+	margin:0 auto;
+	color:#956872;
+}
+.c-word p{
+	width: 900px;
+	padding-left: 20px;
+	margin-bottom: 40px;
+	font-size: 18px;
+	line-height: 14px;
+	padding-bottom:10px;
+	background: url("../img/iCourseIco1.png") no-repeat;
+	border-bottom:solid 1px #D6D6D6;
+}
+.c-word li{
+	width:800px;
+	margin:0px 50px;
+}
+.c-word li a{
+	width:70%;
+	float:left;
+	color:#956872;
+	margin-top: 10px;
+}
+.c-word li:hover{
+	font-size: 20px;
+}
+.c-word li span{
+	width:30%;
+	float:right;
+	text-align: right;
+	margin-top: 10px;
+}
+.c-video{
+	width: 900px;
+	height:600px;
+	margin:0 auto;
+	color:#956872;
+}
+.c-video p{
+	width: 900px;
+	padding-left: 20px;
+	margin-bottom: 40px;
+	font-size: 18px;
+	line-height: 14px;
+	padding-bottom:10px;
+	background: url("../img/iCourseIco1.png") no-repeat;
+	border-bottom:solid 1px #D6D6D6;
+}
+.c-video li{
+	width:450px;
+	height:279px;
+	float: left;
+}
+.c-video li a:hover{
+	opacity: 0.4;
+}
+/*------------------------------------login.html----------------------------*/
+.work-login{
+	width: 900px;
+	height:350px;
+	margin:0 auto;
+}
+.work{
+	width: 400px;
+	height: 250px;
+	padding:50px 0px;
+	border-right: solid 1px #956872;
+	float:left;
+}
+.work p{
+	width: 200px;
+	height:200px;
+	border-radius: 100px;
+	background: url("../img/I.jpg") no-repeat;
+}
+.work p:hover{
+	background: url("../img/11.png") no-repeat;
+}
+.work img{
+	display: block;
+	border:none;
+	margin-left: 100px;
+}
+.login{
+	width: 350px;
+	float:right;
+	margin-top: 30px;
+}
+/*.login #login-z,.login #login-d{
+	width: 80px;
+	height:40px;
+	line-height: 40px;
+	font-size: 25px;
+	display: block;
+	float: left;
+	cursor: pointer;
+	border-bottom:solid 1px #E6E6E6;
+	text-align: center;
+}*/
+/*.login #login-d{
+	border-left: solid 1px #E6E6E6;
+}*/
+#tab{
+	width: 350px;
+	float:right;
+	margin-top: 30px;
+}
+#tab .tabCon{
+	float: left;
+	top:32px;
+	border-top:none;
+	width:300px;
+	height:200px;
+	margin-top: 30px;
+}
+#tab .tabList {
+	float: left;
+	width: 80px;
+	height:40px;
+	line-height: 40px;
+	font-size: 25px;
+	text-align:center;
+	cursor:pointer;
+}
+#tab .tabCon div{
+	position:absolute;
+	filter:alpha(opacity=0);
+}
+#tab #cur-li,#tab #now-li{
+	display: block;
+	float: left;
+	cursor: pointer;
+	text-align: center;
+}
+#tab #cur-li:hover,#tab #now-li:hover{
+	border-bottom:solid 1px #E6E6E6;
+}
+#tab .tabCon #cur,#tab .tabCon #now{
+	opacity:1;
+	filter:alpha(opacity=100);
+	display: none;
+}
+.name,.password{
+	width:210px;
+	height: 40px;
+	display: block;
+	padding-left:40px;
+	border:solid 1px #939090;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+.name{
+	background: url("../img/png-0010.png") no-repeat;
+}
+.password{
+	background: url("../img/png-0054.png") no-repeat;
+}
+.submit-z,.submit-t{
+	width: 253px;
+	height:40px;
+	border-radius: 5px;
+	border:none;
+	margin-top:40px;
+	color:#fff;
+	font-size: 20px;
+	font-weight: bold;
+	background: url("../img/iCourseBtn1.png") no-repeat;
+}
+/*------------------------------------index.html---------------------------------*/
+/*代码整理：www.97zzw.com - 97站长网*/
+img{border:0}
+
+/* 焦点图 */
+.index{
+	width:1200px;
+	height:400px;
+	margin: 20px auto;
+}
+.focus{
+	width:451px;
+	height:260px;
+	padding:30px;
+	float: left;
+	position:relative;
+	background: url("../img/iCourseTab.png") no-repeat;
+}
+.f426x240{
+	width:511px;
+	height:320px;
+	overflow:hidden;
+}
+
+.rslides{
+	width:100%;
+	position:relative;
+	list-style:none;
+	padding:0;
+}
+.rslides a{
+	width:511px;
+	height:320px;
+	color:#956872;
+}
+.rslides a h1{
+	width:511px;
+	margin-left: 20px;
+	color:#FF8F74;
+	font-family: "宋体";
+}
+.rslides a p{
+	width:360px;
+	line-height: 30px;
+	font-size: 18px;
+	margin:20px 50px;
+}
+.rslides a img{
+	position: absolute;
+	top:10px;
+	left: 20px;
+}
+.rslides a input{
+	width:190px;
+    cursor: pointer;
+	height:75px;
+	background: url("../img/iCourseBtn2.png") no-repeat;
+	font-size: 20px;
+	border:none;
+	color:#fff;
+	margin-left:130px;
+}
+.rslides a input:hover{
+	font-weight: bold;
+	font-size: 22px;
+}
+.rslides_nav{
+	height:51px;
+	width:31px;
+	position:absolute;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	top:50%;
+	left:0;
+	opacity:0.5;
+	text-indent:-9999px;
+	overflow:hidden;
+	text-decoration:none;
+	background:url("../img/em_bg.png") no-repeat 0 -560px;
+}
+.rslides_nav:active{opacity:1.0}
+.rslides_tabs{margin:-50px auto;clear:both;text-align:center}
+.rslides_tabs li{display:inline;float:none;_float:left;*float:left;margin-right:25px}
+.rslides_tabs a{width:50px;height:50px;text-indent:-9999px;overflow:hidden;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px;background:rgba(0,0,0, .2);background:#DDD;display:inline-block;_display:block;*display:block;width:9px;height:9px}
+.rslides_tabs .rslides_here a{background:rgba(0,0,0, .6);background:#F02D66}
+.e-business{
+	width: 640px;
+	height:350px;
+	float:left;
+	margin-top: 50px;
+	position: relative;
+}
+.e-business .line{
+	height:150px;
+	position: absolute;
+	top:30px;
+	left:61px;
+}
+.e-business .balloon{
+	position: absolute;
+	top:-65px;
+	left:51px;
+}
+.e-business .shadow{
+	position: absolute;
+	bottom: -70px;
+	left:-80px;
+}
+.e-business .bg{
+	position: absolute;
+	bottom: 20px;
+	left:-80px;
+}
+.e-business .eb{
+	width: 500px;
+	height: 300px;
+	position: absolute;
+	left:40px;
+}
+/*----------------------------topic.html--------------------------------*/
+.big_box{
+	width: 900px;
+	height: 310px;
+	margin: 50px auto;
+	position: relative;
+}
+.move_box{
+	width: 800px;
+	height: 310px;
+	margin: 0 auto;
+	position: relative;
+}
+.move_box a{
+	position: absolute;
+}
+.move_box b{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.move_box img{
+	width: 100%;
+	height: 100%;
+}
+.m1{
+	width: 241px;
+	height: 270px;
+	left: 110px;
+	top: 10px;
+	z-index: 20;
+}
+.m3{
+	width: 241px;
+	height: 270px;
+	right: 110px;
+	top: 10px;
+	z-index: 20;
+}
+.m2{
+	width: 281px;
+	height: 310px;
+	left: 260px;
+	top: 0px;
+	z-index: 30;
+}
+.classify{
+	width: 900px;
+	height:150px;
+	margin:0 auto;
+	color:#956872;
+}
+.classify li{
+	width:150px;
+	float: left;
+	margin-left: 30px;
+}
+.classify li:hover{
+	font-size: 20px;
+}
+.classify li a{
+	display: block;
+	width:150px;
+	color:#956872;
+	text-align: center;
+	margin-top: 10px;
+}
+.classify p{
+	width: 900px;
+	padding-left: 20px;
+	margin-bottom: 40px;
+	font-size: 18px;
+	line-height: 14px;
+	padding-bottom:10px;
+	background: url("../img/iCourseIco1.png") no-repeat;
+	border-bottom:solid 1px #D6D6D6;
+}
+.c-classify{
+	width: 900px;
+	height:50px;
+	margin:0 auto;
+	color:#956872;
+}
+
+.c-classify p{
+	width: 900px;
+	padding-left: 20px;
+	margin-bottom: 40px;
+	font-size: 18px;
+	line-height: 14px;
+	padding-bottom:10px;
+	background: url("../img/iCourseIco1.png") no-repeat;
+	border-bottom:solid 1px #D6D6D6;
+}
+
+/*-----------------------------------------------*/

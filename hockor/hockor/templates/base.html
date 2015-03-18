@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>me</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="西南科技大学网络攻防精品课程网站" />
+    <meta name="description" content="hockor"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link href="../static/static/css/index.css" rel="stylesheet" />
+</head>
+<body>
+<header id="header">
+
+    <div class="logo">
+        <ul class="logo-2">
+            <li id="logo-4"></li>
+            <li id="logo-5"></li>
+            <li id="logo-6"></li>
+            <li id="logo-7"></li>
+            <li id="logo-8"></li>
+            <li id="logo-9"></li>
+        </ul>
+        <ul class="logo-1">
+            <li id="logo-1"></li>
+            <li id="logo-2"></li>
+            <li id="logo-3"></li>
+        </ul>
+    </div>
+
+    <nav id="nav">
+        <a href="#" data-hash="">
+            <span class="img">首页</span>
+            <span class="shadow">HOME</span>
+        </a>
+        <a href="topic.html" data-hash="#student">
+            <span class="img">课程</span>
+            <span class="shadow">SUBJECT</span>
+        </a>
+        <a href="list.html" data-hash="#curriculum">
+            <span class="img">资料</span>
+            <span class="shadow">NEW</span>
+        </a>
+        <a href="test.html" target="_blank">
+            <span class="img">测试</span>
+            <span class="shadow">TEST</span>
+        </a>
+        <a href="login.html" data-hash="#about">
+            <span class="img">留言</span>
+            <span class="shadow">STUDENT</span>
+        </a>
+        <a href="about.html" data-hash="#message">
+            <span class="img">关于</span>
+            <span class="shadow">ABOUT</span>
+        </a>
+    </nav>
+</header>
+<div class="index">
+    {%block t_body%}{%endblock%}
+</div>
+<footer class="footer">
+    <div id="footerNav">
+        <a href="./home.html" data-hash="" >
+            <strong>首页</strong>
+        </a>
+        <a href="./topic.html" data-hash="#curriculum" >
+            <strong>专题区</strong>
+        </a>
+        <a href="./list.html" target="_blank">
+            <strong>最新课程</strong>
+        </a>
+        <a href="./video.html" data-hash="#about">
+            <strong>视频教程</strong>
+        </a>
+        <a href="./about.html" data-hash="#about">
+            <strong>联系我们</strong>
+        </a>
+
+    </div>
+    <p id="copyRight">
+        @copyright SWUST -- Hockor
+    </p>
+</footer>
+<script type="text/javascript" src="../static/js/jquery.js"></script>
+<script type="text/javascript" src="../static/js/97zzw.js"></script>
+</body>
+</html>
