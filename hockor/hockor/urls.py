@@ -21,8 +21,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^xadmin/', include(xadmin.site.urls)),
-    url(r'^$','hockor.views.logoHd'),
-    url(r'^home/$','hockor.views.HomeHd'),
+    url(r'^$','hockor.views.HomeHd'),
     url(r'^register/$','User.views.RegisterHd'),
     url(r'^login/$','User.views.LoginHd'),
     url(r'^logout/$','User.views.LogoutHd'),
