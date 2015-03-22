@@ -18,7 +18,7 @@ fieldset{
 	border:none;
 }
 #header{
-    width: 1000px;
+    width: 1120px;
 	height:200px;
 	position:relative;
 	margin:0 auto;
@@ -44,31 +44,10 @@ fieldset{
 	border-radius: 160px;
 	cursor:pointer;
 }
-.logo-1{
-	width:150px;
-	height: 50px;
-	margin-right: auto;	
-	margin-left: auto;	
-}
-.logo-2{
-	width:180px;
-	height: 30px;	
-	margin-top:140px;	
-	margin-left: 75px;
-}
-.logo-1 li{
-	float:left;
-	width:50px;
-	height: 50px;
-}
-.logo-2 li{
-	float:left;
-	height: 37px;
-}
 
 /*---------------------------nav-------------------------------*/
 #nav{
-	width:720px;
+	width:840px;
 	height:80px;
 	float:right;
 	position: relative;
@@ -112,7 +91,7 @@ fieldset{
 	background-color: #413235;
 }
 #footerNav{
-	width:720px;
+	width:520px;
 	height:20px;
 	position: relative;
 	top:28px;
