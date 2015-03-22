@@ -9,6 +9,11 @@ from django.shortcuts import render
 from django.utils import simplejson
 from User.models import *
 
+def Login(request):
+	template = loader.get_template('user/login.html')
+	context = RequestContext(request,{})
+	return HttpResponse(template.render(context))
+
 def RegisterHd(request):
 	if request.method != 'POST' or not request.is_ajax():
 		raise Http404
