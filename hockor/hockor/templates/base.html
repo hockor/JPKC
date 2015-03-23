@@ -29,7 +29,7 @@
             <span class="img">资料</span>
             <span class="shadow">FILE</span>
         </a>
-        <a href="{%url 'Content.views.TestHd'%}" target="_blank">
+        <a href="{%url 'Content.views.TestHd'%}">
             <span class="img">测试</span>
             <span class="shadow">TEST</span>
         </a>
@@ -47,9 +47,13 @@
         </a>
     </nav>
 </header>
-<div class="index">
-    {%block t_body%}{%endblock%}
-</div>
+<!--[if IE 8]>
+win10都快出来了，还用IE浏览器？
+换个chrome吧！
+<![endif]-->
+{%block t_body%}
+
+{%endblock%}
 <footer class="footer">
     <div id="footerNav">
         <a href="{%url 'hockor.views.HomeHd'%}" data-hash="" >
