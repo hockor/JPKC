@@ -834,3 +834,92 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
     border: 1px solid #fff;
     color: #fff;
 }
+
+
+/*message*/
+.public , .messlist{
+	  width: 1000px;
+	  margin: 40px auto;
+	  background: #fff;
+	  padding: 10px;
+	  color: #956872;
+	  box-shadow: 3px 5px 15px #C4C4C4;
+}
+.pub-title , .pub-title {
+	font-size: 24px;
+	height: 32px;
+	line-height: 32px;
+	margin: 10px 0;
+	color: #FF8F74;
+}
+.pub-mess {
+	list-style-position :inside ;
+	font-size:16px;
+	padding: 5px 0;
+}
+.ds-post-main {
+	position:relative; 
+	width:980px;
+	margin: 20px auto
+}
+.ds-avatar {
+	position: absolute;
+	  top: -15px;
+	  left: 5px;
+	  width: 31px;
+	  height: 31px;
+	  padding: 5px;
+	  background: url(../img/swust.jpg);
+	  border-radius: 50%;
+	  background-size: 100%;
+}
+.ds-comment-body {
+	  margin-left: 20px;
+	  padding: 10px 10px 10px 40px;
+	  background: #F0F0E3;
+	  border-radius: 15px;
+}
+.ds-comment-body span {
+	display: inline-block;
+	color: #817F7F;
+	height: 32px;
+	line-height: 32px;
+}
+.mess-other {
+	width: 80%;
+	position: relative;
+}
+.mess-date {
+	width: 180px;
+	position: relative;
+}
+.reply {
+	color:#817F7F;
+	width: 70px;
+	position: relative;
+	right: 0px;
+}
+.reply-it{
+	text-align: right;
+}
+.reply-it textarea{
+	width: 60%;
+	padding: 10px 20px;
+	position: relative;
+	left: 280px;
+	display: block;
+	font-size: 16px;
+	line-height: 24px;
+	resize: none;
+	border: 2px solid #F0F0E3; 
+}
+.reply-it div {
+	position: relative;
+	left: -50px;
+	padding: 10px 0;
+}
+
+.reply-it a {
+	display: inline-block;
+	padding: 0 10px;
+}
