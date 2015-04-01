@@ -78,4 +78,49 @@ $(function(){
         }
     });
 
+    var reply = $("<div class='reply-it'><textarea  placeholder='回复留言'></textarea><div>"+
+                        "<span class='cancle-reply'>取消</span>"+
+                        "<span class='ok-reply'>确认</span>"+
+                    "</div></div>");
+    var flag = false;
+    $(".reply").bind("click",function(){
+        if(!flag){
+            $(".messlist").append(reply);
+            $(".cancle-reply").click(function(){
+                $(".reply-it").remove();
+                falg = false;
+                return;
+            });
+
+            $(".ok-reply").click(function(){
+                var replyValue = $(".reply-it>textarea").val();
+                if(replyValue){
+                    $.ajax({
+                        url:"",
+                        type: 'POST',
+                        contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                        data:{
+
+                            /*就上面那数据*/
+                            
+                        },
+                        dataType: 'json',
+                        error: function(){
+                            alert('请重新提交！');
+                        },
+                        success:function(data){
+                            var message = data.message;
+                            if (message == "error"){
+                                alert("请重新提交!");
+                            }
+                        }
+                    });
+                } else {
+                    alert("请输入回复内容!");
+                }
+            })
+        }
+    })
+    
+
 })
