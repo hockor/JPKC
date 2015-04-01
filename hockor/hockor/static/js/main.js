@@ -93,7 +93,20 @@ $(function(){
             });
 
             $(".ok-reply").click(function(){
+                //回复内容
                 var replyValue = $(".reply-it>textarea").val();
+                var re = /傻比|煞笔|傻逼|尼玛|艹|操|日|shit|fuck|bitch/ig;
+
+                //敏感词处理
+                replyValue = replyValue.replace(re,function(str){
+                    var result = "";
+                    for(var i=0;i < str.length;i++){
+                        result += '*';
+                    }
+                    return result;
+                });
+
+                //console.log(replyValue);
                 if(replyValue){
                     $.ajax({
                         url:"",
@@ -101,7 +114,7 @@ $(function(){
                         contentType:"application/x-www-form-urlencoded;charset=UTF-8",
                         data:{
 
-                            /*就上面那数据*/
+                            /*就上面那replyValue*/
                             
                         },
                         dataType: 'json',
