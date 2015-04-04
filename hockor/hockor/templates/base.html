@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
     <meta charset="utf-8">
     <title>网络攻防精品课程网站</title>
@@ -12,10 +12,8 @@
     <link href="../static/css/index.css" rel="stylesheet" />
 </head>
 <body>
-<header id="header">
-
+<div id="header">
     <div class="logo"></div>
-
     <nav id="nav">
         <a href="{%url 'hockor.views.HomeHd'%}" data-hash="">
             <span class="img">首页</span>
@@ -34,7 +32,7 @@
             <span class="shadow">TEST</span>
         </a>
         <a href="{%url 'Content.views.MessageHd'%}" data-hash="#about">
-            <span class="img">留言</span>
+            <span class="img">公告留言</span>
             <span class="shadow">MESSEGE</span>
         </a>
         <a href="{%url 'Content.views.AboutHd'%}" data-hash="#message">
@@ -46,15 +44,16 @@
             <span class="shadow">LOGIN</span>
         </a>
     </nav>
-</header>
-<!--[if IE 8]>
-win10都快出来了，还用IE浏览器？
-换个chrome吧！
+</div>
+<!--[if lte IE 8]>
+
+<div style="text-align:center;">win10都快出来了，还用IE浏览器？
+换个chrome吧！</div>
 <![endif]-->
 {%block t_body%}
 
 {%endblock%}
-<footer class="footer">
+<div class="footer">
     <div id="footerNav">
         <a href="{%url 'hockor.views.HomeHd'%}" data-hash="" >
             <strong>首页</strong>
@@ -75,7 +74,7 @@ win10都快出来了，还用IE浏览器？
     <p id="copyRight">
         @copyright SWUST -- Hockor
     </p>
-</footer>
+</div>
 <script type="text/javascript" src="../static/js/jquery.js"></script>
 <script type="text/javascript" src="../static/js/97zzw.js"></script>
 <script type="text/javascript" src="../static/js/main.js"></script>
