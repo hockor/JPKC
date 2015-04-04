@@ -8,12 +8,14 @@ from django.template import RequestContext,loader
 from django.shortcuts import render
 from django.utils import simplejson
 from User.models import *
+from django.views.decorators.csrf import csrf_exempt
 
 def Login(request):
 	template = loader.get_template('user/login.html')
 	context = RequestContext(request,{})
 	return HttpResponse(template.render(context))
 
+@csrf_exempt
 def RegisterHd(request):
 	if request.method != 'POST' or not request.is_ajax():
 		raise Http404
@@ -21,17 +23,17 @@ def RegisterHd(request):
 	password = request.POST.get("password")
 	email = request.POST.get("email")
 	number = request.POST.get("number")
-	professional = request.POST.get("professional")
 	if User.objects.filter(username = username).count()>0:
-		return HttpResponse(simplejson.dumps({'message':'error'}))
+		return HttpResponse(simplejson.dumps({'message':'error1'}))
 	if User.objects.filter(email = email).count()>0:
-		return HttpResponse(simplejson.dumps({'message':'error'}))
+		return HttpResponse(simplejson.dumps({'message':'error2'}))
 	try:
-		CreateUser(username,password,email,number,professional)
+		CreateUser(username,password,email,number)
 	except:
-		return HttpResponse(simplejson.dumps({'message':'error'}))
+		return HttpResponse(simplejson.dumps({'message':'error3'}))
 	return HttpResponse(simplejson.dumps({'message':'ok'}))
 
+@csrf_exempt
 def LoginHd(request):
 	if request.method != 'POST' or not request.is_ajax():
 		raise Http404

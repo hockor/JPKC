@@ -14,11 +14,11 @@ class UserProfile(models.Model):
 		return self.professional
 
 
-def CreateUser(username,password,email,num,professional):
+def CreateUser(username,password,email,num):
 	user = User(username = username,email = email)
 	user.set_password(password)
 	user.is_staff = False
 	user.save()
 
-	profile = UserProfile(user = user,num = num,professional = professional)
+	profile = UserProfile(user = user,num = num)
 	profile.save()

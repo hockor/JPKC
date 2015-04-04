@@ -21,14 +21,14 @@ $(function(){
         var username = $(".username").val(),
             userpass = $(".userpass").val();
         $.ajax({
-            url:"",
             type: 'POST',
+            dataType: 'json',
             contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+            url:"../login/",
             data:{
                 username : username,
                 password : userpass
             },
-            dataType: 'json',
             error: function(){
                 alert('请重新登录！');
             },
@@ -37,7 +37,7 @@ $(function(){
                 if (message == "error"){
                     alert("用户名或密码错误!");
                 }else if(message == 'ok'){
-
+                    window.location.href = '../';
                 }
             }
         });
@@ -52,24 +52,32 @@ $(function(){
 
         if(reg_pass === reg_pass_agin){
             $.ajax({
-                url:"",
                 type: 'POST',
+                dataType: 'json',
                 contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                url:"../register/",
                 data:{
-
+                    username:reg_user,
+                    password:reg_pass_agin,
+                    email:reg_email,
+                    number:reg_num
                     /*就上面那些数据*/
                     /*我日，为什么linux突然不能打拼音了*/
                 },
-                dataType: 'json',
+                
                 error: function(){
                     alert('注册失败！');
                 },
                 success:function(data){
                     var message = data.message;
-                    if (message == "error"){
-                        alert("注册失败!");
+                    if (message == "error1"){
+                        alert("该用户名已注册!");
+                    }else if (message == "error2"){
+                        alert("该邮箱已注册");
+                    }else if (message == "error3"){
+                        alert("注册失败");
                     }else if(message == 'ok'){
-
+                        alert("注册成功");
                     }
                 }
             });
