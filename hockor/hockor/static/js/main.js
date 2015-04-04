@@ -18,29 +18,36 @@ $(function(){
 
     /*登录注册*/
     $(".login-it").click(function() {
-        var username = $(".username").val(),
+        var username = $.trim($(".username").val()),
             userpass = $(".userpass").val();
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            contentType:"application/x-www-form-urlencoded;charset=UTF-8",
-            url:"../login/",
-            data:{
-                username : username,
-                password : userpass
-            },
-            error: function(){
-                alert('请重新登录！');
-            },
-            success:function(data){
-                var message = data.message;
-                if (message == "error"){
-                    alert("用户名或密码错误!");
-                }else if(message == 'ok'){
-                    window.location.href = '../';
+
+        if(username && userpass){
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                url:"../login/",
+                data:{
+                    username : username,
+                    password : userpass
+                },
+                error: function(){
+                    alert('请重新登录！');
+                },
+                success:function(data){
+                    var message = data.message;
+                    if (message == "error"){
+                        alert("用户名或密码错误!");
+                    }else if(message == 'ok'){
+                        window.location.href = '../';
+                        $(".for-login").remove();
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            $(".login .error-tip").css("display","block");
+        }
+        
     });
 
     $(".regester").click(function() {
@@ -50,7 +57,7 @@ $(function(){
             reg_num = $(".reg-num").val(),
             reg_email = $(".reg-email").val();
 
-        if(reg_pass === reg_pass_agin){
+        if(reg_pass === reg_pass_agin && reg_user && reg_num && reg_email){
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -82,7 +89,7 @@ $(function(){
                 }
             });
         } else {
-           alert("密码不一致！")
+           $(".reg .error-tip").css("display","block");
         }
     });
 
