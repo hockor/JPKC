@@ -8,6 +8,10 @@ from django.shortcuts import render
 from django.utils import simplejson
 from User.models import *
 from Content.models import *
+from Content.serializers import AnnouncementSerializer,NewSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
 def SubjectHd(request):
 	template = loader.get_template('content/subject.html')
@@ -70,3 +74,15 @@ def backMessage(request):
 		return HttpResponse(simplejson.dumps({'message':'ok'}))
 	else:
 		return HttpResponse(simplejson.dumps({'message':'error'}))
+
+class AnnouncementList(APIView):
+	def get(self,request,format=None):
+		announcements = Announcement.objects.all()
+		serializer = AnnouncementSerializer(announcements,many = True)
+		return Response({'status':200,'data':serializer.data})
+
+class NewList(APIView):
+	def get(self,request,format=None):
+		news = New.objects.all()
+		serializer = NewSerializer(news,many = True)
+		return Response({'status':200,'data':serializer.data})
