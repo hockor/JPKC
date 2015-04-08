@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     url(r'^file/$','Content.views.FileHd'),
     url(r'^message/$','Content.views.MessageHd'),
     url(r'^subject/$','Content.views.SubjectHd'),
-    #url(r'^test/$','Content.views.TestHd'),
+    url(r'^test/$','Content.views.TestHd'),
     url(r'^getmessage/$','Content.views.getMessage'),
     url(r'^backmessage/$','Content.views.backMessage'),
 )

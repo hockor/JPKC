@@ -41,6 +41,7 @@ $(function(){
                     }else if(message == 'ok'){
                         window.location.href = '../';
                         $(".for-login").remove();
+                        $(".user-info").show();
                     }
                 }
             });
@@ -93,6 +94,8 @@ $(function(){
         }
     });
 
+
+        //留言等功能
     var reply = $("<div class='reply-it'><textarea  placeholder='回复留言'></textarea><div>"+
                         "<span class='cancle-reply'>取消</span>"+
                         "<span class='ok-reply'>确认</span>"+

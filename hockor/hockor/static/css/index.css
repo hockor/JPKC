@@ -885,6 +885,34 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 	height: 32px;
 	line-height: 32px;
 }
+.mess-input {
+	margin-bottom: 75px;
+	position: relative;
+}
+.mess-input textarea{
+	padding: 10px 20px;
+	position: relative;
+	display: block;
+	width: 91%;
+	font-size: 16px;
+	margin: auto;
+	margin-bottom: 20px;
+	line-height: 24px;
+	resize: none;
+	border: 2px solid #F0F0E3;
+}
+.mess-input .ok-mess {
+	position: absolute;
+	right: 35px;
+	display: block;
+	background: #FF8F74;
+	width: 80px;
+	border-radius: 10px;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+}
 .mess-other {
 	width: 80%;
 	position: relative;
@@ -934,5 +962,14 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 	height: 16px;
 	font-size: 14px;
 	line-height: 16px;
+	display: none;
+}
+
+.user-info {
+	line-height: 24px;
+	position: absolute;
+	bottom: 10px;
+	width: 270px;
+	text-align: center;
 	display: none;
 }
