@@ -21,13 +21,63 @@ class UploadFile(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		verbose_name = u"上传"
+		verbose_name_plural = u"上传"
+
 class Announcement(models.Model):
 	name = models.CharField(max_length = 30)
 	content = models.TextField(u"内容")
 	time = models.DateTimeField(u"时间",default = datetime.now)
+
+	class Meta:
+		verbose_name = u"公告"
+		verbose_name_plural = u"公告"
 
 class New(models.Model):
 	name = models.CharField(max_length = 30)
 	content = models.TextField(u"内容")
 	time = models.DateTimeField(u"时间",default = datetime.now)
 
+	class Meta:
+		verbose_name = u"新闻"
+		verbose_name_plural = u"新闻"
+
+class Paper(models.Model):
+	user = models.ForeignKey(User,null = True,blank = True)
+	exam = models.CharField(u"试卷名称",max_length = 40)
+	person = models.CharField(u"出题人",max_length = 20)
+	totalscore = models.IntegerField(u"总分")
+	time = models.DateTimeField(u"时间",default = datetime.now)
+
+	class Meta:
+		verbose_name = u"试卷" 
+		verbose_name_plural = u"试卷"
+
+	def __unicode__(self):
+		return self.exam
+
+
+class Exam(models.Model):
+	test = models.ForeignKey(Paper,related_name='试卷名称')
+	question = models.TextField(u"题目")
+	optionA = models.CharField(u"A",max_length = 200)
+	optionB = models.CharField(u"B",max_length = 200)
+	optionC = models.CharField(u"C",max_length = 200)
+	optionD = models.CharField(u"D",max_length = 200)
+	answer = models.CharField(u"答案",max_length = 2)
+	score = models.IntegerField(u"分数")
+
+	def __unicode__(self):
+		return self.test.exam
+
+
+	class Meta:
+		verbose_name = u"试题"
+		verbose_name_plural = u"试题"
+
+
+class FinishExam(models.Model):
+	user = models.ForeignKey(User)
+	paper = models.ForeignKey(Paper)
+	score = models.IntegerField()

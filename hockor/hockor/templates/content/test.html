@@ -1,6 +1,17 @@
 {%extends 'base.html'%}
 
 {%block t_body%}
+{%for test in tests%}
+{{test.exam}}
+{{test.person}}
+{{test.totalscore}}
+{{test.time}}
+{%endfor%}
+已做答的题目
+{%for getscore in getscores%}
+{{get.paper.exam}}
+{{get.score}}
+{%endfor%}
 <fieldset class="question">
     <form action="" method="get">
         <p>电子商务是一门怎么样的学科？</p>

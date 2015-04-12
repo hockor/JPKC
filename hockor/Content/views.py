@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.utils import simplejson
 from User.models import *
 from Content.models import *
-from Content.serializers import AnnouncementSerializer,NewSerializer
+from Content.serializers import AnnouncementSerializer,NewSerializer,ExamSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -36,8 +36,10 @@ def MessageHd(request):
 	return HttpResponse(template.render(context))
 
 def TestHd(request):
+	tests = Paper.objects.all()
+	getscores = FinishExam.objects.filter(user_id = request.user.id)
 	template = loader.get_template('content/test.html')
-	context = RequestContext(request,{})
+	context = RequestContext(request,{'tests':tests,'getscores':getscores})
 	return HttpResponse(template.render(context))
 
 def stMsg(username,message):
@@ -86,3 +88,36 @@ class NewList(APIView):
 		news = New.objects.all()
 		serializer = NewSerializer(news,many = True)
 		return Response({'status':200,'data':serializer.data})
+
+class ExamDetail(APIView):
+	def get(self,request,pk,format = None):
+		exams = Exam.objects.filter(test_id = pk)
+		serializer = ExamSerializer(exams,many = True)
+		return Response({'status':200,'data':serializer.data})
+
+
+def getAnswer(request):
+	if request.method != 'POST' or not request.is_ajax():
+		raise Http404
+	id = request.POST.get("id")
+	answer = request.POST.get("answer")
+	try:
+		obj = Exam.objects.get(id = id)
+		if obj.answer == answer:
+			return HttpResponse(simplejson.dumps({'score':obj.score}))
+		else:
+			return HttpResponse(simplejson.dumps({'score':0}))
+	except:
+		return HttpResponse(simplejson.dumps({'score':'error'}))
+
+def getAllScore(request):
+	if request.method != 'POST' or not request.is_ajax():
+		raise Http404
+	score = request.POST.get('score')
+	paperid = request.POST.get('paperid')
+	try:
+		obj = FinishExam(user_id = request.user.id,paper_id = paperid,score = score)
+		obj.save()
+		return HttpResponse(simplejson.dumps({'score':score}))
+	except:
+		return HttpResponse(simplejson.dumps({'score':'error'}))

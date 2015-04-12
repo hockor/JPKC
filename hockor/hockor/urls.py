@@ -41,6 +41,8 @@ urlpatterns = patterns('',
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
     url(r'^announcementlist/$',views.AnnouncementList.as_view()),
     url(r'^newlist/$',views.NewList.as_view()),
+    url(r'^test/([0-9]+)/$',views.ExamDetail.as_view()),
+    url(r'^getanswer/$','Content.views.getAnswer'),
 )
 
 
