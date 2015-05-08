@@ -276,6 +276,14 @@ fieldset{
 	line-height: 25px;
 }
 /*-----------------------------test.html-----------------------------------*/
+.testmain {
+	  width: 1000px;
+  	  margin: auto;
+}
+}
+.usertest{
+	margin-left:50px; 
+}
 .question{
 	width:900px;
 	color:#956872;
@@ -300,7 +308,8 @@ fieldset{
 	font-size: 20px;
 	border:none;
 	font-weight: bold;
-	margin-left: 600px;
+	margin: auto;
+  	display: block;
 	color: #fff;
     cursor: pointer;
 	background: #e43257;
