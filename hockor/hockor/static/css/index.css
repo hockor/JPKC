@@ -276,6 +276,21 @@ fieldset{
 	line-height: 25px;
 }
 /*-----------------------------test.html-----------------------------------*/
+.Alltest {
+	width: 1000px;
+	margin: auto;
+	height: 600px;
+}
+.testenter {
+	width: 400px;
+	display: inline-block;
+	height: 400px;
+	text-align: center;
+	font-size: 60px;
+	line-height: 400px;
+	border: 2px solid #A39582;
+	margin: 46px;
+}
 .testmain {
 	  width: 1000px;
   	  margin: auto;

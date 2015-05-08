@@ -1,40 +1,10 @@
 {%extends 'base.html'%}
-
-
-
 {%block t_body%}
-<div class="testmain">
-{%for test in tests%}
-{{test.exam}}
-{{test.person}}
-{{test.totalscore}}
-{{test.time}}
-{%endfor%}
 
-    <h3 class="usertest">已做答的题目</h3>
-{%for getscore in getscores%}
-{{get.paper.exam}}
-{{get.score}}
-{%endfor%}
-<fieldset class="question">
-        <p>电子商务是一门怎么样的学科？</p>
-        <label><input type="radio" name="Answer-1" value="管理类" id="" />管理类</label>
-        <label><input type="radio" name="Answer-1" value="工科" id="" />工科</label>
-        <label><input type="radio" name="Answer-1" value="综合类" id="" />综合类</label>
-        <label><input type="radio" name="Answer-1" value="理科" id="" />理科</label>
-        <!-- 一定要有name属性值，不然不是单选！！！另外，一定要有form标签！！！ -->
-        
-</fieldset>
-
-<input type="submit" value="提交" id="test" />
-<ul class="test">
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-</ul>
+<div class="Alltest">
+    <a class="testenter" href="{%url 'Content.views.NewTestHd'%}">新测验</a>
+    <a class="testenter" href="{%url 'Content.views.ComplateTestHd'%}">已完成测验</a>
 </div>
-<script>
-   
-</script>
+
 {%endblock%}
 

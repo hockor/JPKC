@@ -17,5 +17,5 @@ class NewSerializer(serializers.ModelSerializer):
 class ExamSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Exam
-		fields = ('question','optionA','optionB','optionC','optionD','score')
+		fields = ('id','question','optionA','optionB','optionC','optionD','score')
 

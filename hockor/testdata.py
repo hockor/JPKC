@@ -21,8 +21,9 @@ cur.close()
 if os.system('echo "no" | python ./manage.py syncdb'):
 	exit(-1)
 
-from User.models import *
-u = CreateUser('wzh','123456','821308407@qq.com','20111866')
+from django.contrib.auth.models import User
+u = User(username = 'wzh',email = '821308407@qq.com')
+u.set_password('123456')
 u.is_staff = True
 u.is_superuser = True
 u.is_active = True

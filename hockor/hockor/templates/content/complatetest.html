@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+
+
+
+{%block t_body%}
+<div class="testmain">
+{%for test in tests%}
+{{test.exam}}
+{{test.person}}
+{{test.totalscore}}
+{{test.time}}
+{%endfor%}
+<h3 class="usertest">已做答的题目</h3>
+{%for getscore in getscores%}
+{{get.paper.exam}}
+{{get.score}}
+{%endfor%}
+
+</div>
+<script>
+   
+</script>
+{%endblock%}
+

@@ -43,8 +43,9 @@ def TestHd(request):
 	return HttpResponse(template.render(context))
 
 def NewTestHd(request):
+	tests = Paper.objects.all()
 	template = loader.get_template('content/newtest.html')
-	context = RequestContext(request,{})
+	context = RequestContext(request,{'tests':tests})
 	return HttpResponse(template.render(context))
 
 def ComplateTestHd(request):

@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{%block t_body%}
+<div class="testmain">
+    {%for test in tests%}
+    <h3 testid={{test.id}} class="usertest">
+        {{test.exam}}
+        {{test.person}}
+        {{test.totalscore}}
+        {{test.time}}
+        
+    </h3>
+    {%endfor%}
+    <fieldset class="question">
+    </fieldset>
+    <input type="submit" value="提交" id="test" />
+</div>
+<script>
+    var testid = $(".usertest").attr("testid");
+    $.ajax({
+        url:"/test/"+testid,
+        type:"GET",
+        success : function(data){
+            $.each(data.data,function(i,con){
+                var test = $('<p>'+data.data[i].question+'(本题目'+data.data[i].score+'分)</p><label><input type="radio" name="'+data.data[i].id+'" value="A"/>'+data.data[i].optionA+'</lable><label><input type="radio" name="'+data.data[i].id+'" value="B"/>'+data.data[i].optionB+'</lable><label><input type="radio" name="'+data.data[i].id+'" value="C"/>'+data.data[i].optionC+'</lable><label><input type="radio" name="'+data.data[i].id+'" value="D"/>'+data.data[i].optionD+'</lable>');
+                $(".question").append(test);
+            }); 
+        }
+    })
+    var arr = [];
+    $("#test").click(function(){
+        var teststr = $(":checked");
+        $.each(teststr,function(i,con){
+            
+            var nowstr = teststr[i];
+            //alert(nowstr.getAttribute('value'))
+            arr.push(nowstr.getAttribute('value'))
+        })
+        if($(".question p").length!=$(":checked").length){
+            alert("请完成全部题目哦!");
+        } else {
+            arr = JSON.stringify(arr);
+            $.ajax({
+                url:"/test/"+testid,
+                type:"POST",
+                data : {
+                   answer : arr
+                }
+ 
+            })
+        }
+    })
+</script>
+{%endblock%}
+
