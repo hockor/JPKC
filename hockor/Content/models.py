@@ -81,3 +81,4 @@ class FinishExam(models.Model):
 	user = models.ForeignKey(User)
 	paper = models.ForeignKey(Paper)
 	score = models.IntegerField()
+	time = models.DateTimeField(default = datetime.now)

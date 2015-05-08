@@ -12,6 +12,9 @@ from Content.serializers import AnnouncementSerializer,NewSerializer,ExamSeriali
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 def SubjectHd(request):
 	template = loader.get_template('content/subject.html')
@@ -100,12 +103,44 @@ class NewList(APIView):
 		serializer = NewSerializer(news,many = True)
 		return Response({'status':200,'data':serializer.data})
 
+
 class ExamDetail(APIView):
 	def get(self,request,pk,format = None):
 		exams = Exam.objects.filter(test_id = pk)
 		serializer = ExamSerializer(exams,many = True)
 		return Response({'status':200,'data':serializer.data})
 
+	def post_data(self,answer,id):
+		exam = Exam.objects.filter(test_id = id)
+		score = 0
+		test  = []
+		for i in range(len(exam)):
+			if exam[i].answer == answer[i]:
+				score = score + exam[i].score
+				test.append('Y')
+			else:
+				test.append('N')
+		return score,test
+
+	def post_exam(self,score,pk,user):
+		print FinishExam.objects.filter(user_id = user.id,paper_id = pk).count()
+		if FinishExam.objects.filter(user_id = user.id,paper_id = pk).count()>0:
+			obj = FinishExam.objects.get(user_id = user.id,paper_id = pk)
+			obj.score = score
+			obj.time = datetime.now()
+			obj.save()
+		else:
+			op = FinishExam(user_id = user.id,paper_id = pk,score = score)
+			op.save()
+
+	def post(self,request,pk,format = None):
+		try:
+			answer = simplejson.loads(request.data['answer'])
+			score,test = self.post_data(answer,pk)
+			self.post_exam(score,pk,request.user)
+			return Response({'status':0,'score':score,'test':test})
+		except:
+			return Response({'status':1})
 
 def getAnswer(request):
 	if request.method != 'POST' or not request.is_ajax():
