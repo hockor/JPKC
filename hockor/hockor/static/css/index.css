@@ -289,7 +289,7 @@ fieldset{
 	color:#956872;
 	margin:0px auto 40px auto;
 }
-.question form p{
+.question  p{
 	width:900px;
 	display: block;
 	margin:20px 0px;
@@ -299,7 +299,7 @@ fieldset{
 	padding-left: 20px;
 	background: url("../img/iCourseIco1.png") no-repeat;
 }
-.question form label{
+.question  label{
 	margin:0px 80px;
 }
 #test{
