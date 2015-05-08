@@ -43,6 +43,8 @@ urlpatterns = patterns('',
     url(r'^newlist/$',views.NewList.as_view()),
     url(r'^test/([0-9]+)/$',views.ExamDetail.as_view()),
     url(r'^getanswer/$','Content.views.getAnswer'),
+    url(r'^newtest/$','Content.views.NewTestHd'),
+    url(r'^complatetest/$','Content.views.ComplateTestHd')
 )
 
 

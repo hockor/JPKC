@@ -42,6 +42,16 @@ def TestHd(request):
 	context = RequestContext(request,{'tests':tests,'getscores':getscores})
 	return HttpResponse(template.render(context))
 
+def NewTestHd(request):
+	template = loader.get_template('content/newtest.html')
+	context = RequestContext(request,{})
+	return HttpResponse(template.render(context))
+
+def ComplateTestHd(request):
+	template = loader.get_template('content/complatetest.html')
+	context = RequestContext(request,{})
+	return HttpResponse(template.render(context))
+
 def stMsg(username,message):
 	try:
 		obj = Message(name = username,message = message)
@@ -121,3 +131,4 @@ def getAllScore(request):
 		return HttpResponse(simplejson.dumps({'score':score}))
 	except:
 		return HttpResponse(simplejson.dumps({'score':'error'}))
+
