@@ -123,7 +123,6 @@ class ExamDetail(APIView):
 		return score,test
 
 	def post_exam(self,score,pk,user):
-		print FinishExam.objects.filter(user_id = user.id,paper_id = pk).count()
 		if FinishExam.objects.filter(user_id = user.id,paper_id = pk).count()>0:
 			obj = FinishExam.objects.get(user_id = user.id,paper_id = pk)
 			obj.score = score

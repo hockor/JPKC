@@ -17,7 +17,9 @@
 <body>
 <div id="header">
     <div class="logo">
-        <div class="user-info">欢迎你<span>hockor</span><br><a href="www.baidu.com">退出</a></div>
+    {%if user.is_authenticated%}
+    <div class="user-info">欢迎你<span>{{user.username}}</span><br><a href="{%url 'User.views.LogoutHd'%}">退出</a></div>
+    {%endif%}
     </div>
     <nav id="nav">
         <a href="{%url 'hockor.views.HomeHd'%}" data-hash="">
@@ -44,10 +46,12 @@
             <span class="img">关于</span>
             <span class="shadow">ABOUT</span>
         </a>
+        {%if not user.is_authenticated%}
         <a href="{%url 'User.views.Login'%}" data-hash="#message" class="for-login">
             <span class="img">登录</span>
             <span class="shadow">LOGIN</span>
-        </a>
+        </a
+        {%endif%}
     </nav>
 </div>
 <!--[if lte IE 8]>

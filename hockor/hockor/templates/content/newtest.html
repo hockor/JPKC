@@ -7,12 +7,19 @@
         {{test.person}}
         {{test.totalscore}}
         {{test.time}}
-        
     </h3>
     {%endfor%}
     <fieldset class="question">
     </fieldset>
     <input type="submit" value="提交" id="test" />
+</div>
+
+<div class="mask">
+    <div class="result">
+        <h3>答题结果</h3>
+        <span class="close">X 关闭</span>
+        您的最终得分为：<span class="score"></span>
+    </div>
 </div>
 <script>
 
@@ -44,11 +51,12 @@
     var arr = [];
     $("#test").click(function(){
         var teststr = $(":checked");
+        var height = $(window).height();
         $.each(teststr,function(i,con){
             
             var nowstr = teststr[i];
-            //alert(nowstr.getAttribute('value'))
-            arr.push(nowstr.getAttribute('value'))
+            var nowvalue =  nowstr.getAttribute('value');
+            arr.push(nowvalue);
         })
         if($(".question p").length!=$(":checked").length){
             alert("请完成全部题目哦!");
@@ -59,6 +67,17 @@
                 type:"POST",
                 data : {
                    answer : arr
+                },
+                success : function(data){
+                    $(".mask").css("height",height+"px");
+                    $(".mask").show();
+                    $(".score").html(data.score);
+                    $(".close").click(function(){
+                        $(".mask").hide();
+                    })
+                },
+                error : function(){
+                    alert("error")
                 }
  
             })

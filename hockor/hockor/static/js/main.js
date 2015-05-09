@@ -39,9 +39,9 @@ $(function(){
                     if (message == "error"){
                         alert("用户名或密码错误!");
                     }else if(message == 'ok'){
-                        window.location.href = '../';
+                        alert("OK");
                         $(".for-login").remove();
-                        $(".user-info").show();
+                        window.location.href = "/"
                     }
                 }
             });

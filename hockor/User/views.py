@@ -43,11 +43,11 @@ def LoginHd(request):
 	if not user:
 		return HttpResponse(simplejson.dumps({'message':'error'}))
 	login(request,user)
-	return HttpResponse(simplejson.dumps({'message':'ok'}))
+	return HttpResponse(simplejson.dumps({'message':'ok','username':username}))
 
 def LogoutHd(request):
 	logout(request)
-	return HttpResponseRedirect(reverse('hockor.views.logoHd'))
+	return HttpResponseRedirect('/')
 
 
 

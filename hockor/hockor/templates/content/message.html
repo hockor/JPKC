@@ -4,9 +4,8 @@
 	<div class="public">
 		<div class="pub-title">教师公告</div>
 		<ol>
-			<li class="pub-mess">电子商务环境的需要和信息技术的进步是电子商务不断发展和进步的原动力。电子商务环境的需要和信息技术的进步是电子商务不</li>
-			<li class="pub-mess">电子商务环境的需要和信息技术的进步是电子商务不断发展和进步的原动力。电子商务环境的需要和信息技术的进步是电子商务不环境的需要和信息技术的进步是电子商务不断发展和进</li>
-			<li class="pub-mess">电子商务环境的需要和信息技术的进步是电子商务不断发展和进步的原动力。电子商务环境的需要和信息技术的进步是电子商务不</li>
+			
+
 		</ol>
 	</div>
 	<div class="messlist">
@@ -31,4 +30,24 @@
 				</div>
 			</div>
 	</div>
+	<script>
+	$.ajax({
+		url: "/announcementlist",
+		type : "GET",
+		success : function(data){
+			//console.log(data)
+			$.each(data.data,function(i,con){
+				var test = $('<h3>'+data.data[i].name+'('+data.data[i].time+')</h3><li class="pub-mess">'+data.data[i].content+'</li>');
+				$(".public ol").append(test);
+				console.log(test)
+			})
+
+		},
+		error : function(){
+			alert("network error!")
+		}
+
+	})
+	</script>
 {%endblock%}
+
