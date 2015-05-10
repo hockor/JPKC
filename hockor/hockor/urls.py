@@ -44,7 +44,8 @@ urlpatterns = patterns('',
     url(r'^test/([0-9]+)$',views.ExamDetail.as_view()),
     url(r'^getanswer/$','Content.views.getAnswer'),
     url(r'^newtest/$','Content.views.NewTestHd'),
-    url(r'^complatetest/$','Content.views.ComplateTestHd')
+    url(r'^complatetest/$','Content.views.ComplateTestHd'),
+    url(r'^download/([0-9]+)$','Content.views.downLoad')
 )
 
 

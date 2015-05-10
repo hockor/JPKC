@@ -9,21 +9,27 @@
     <p class="catalog">列表</p>
     <div class="l-content">
         <ul>
-            <li><span class="cs1">第一章</span><p class="cs1-content">绪论</p> <span class="cs1-together">下载</span> </li>
-            <li><span class="cs1">第二章</span><p class="cs1-content">电子商务的技术支撑环境</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第三章</span><p class="cs1-content">电子商务信息管理</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第四章</span><p class="cs1-content">物流与供应链管理</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第五章</span><p class="cs1-content">电子商务安群管理</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第六章</span><p class="cs1-content">电子商务安全</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第七章</span><p class="cs1-content">网络营销</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第八章</span><p class="cs1-content">电子商务安全</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第九章</span><p class="cs1-content">电子商务项目管理</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第十章</span><p class="cs1-content">电子商务发展</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第十一章</span><p class="cs1-content">电子支付</p><span class="cs1-together">下载</span></li>
-            <li><span class="cs1">第十二章</span><p class="cs1-content">电子商务与消费者</p><span class="cs1-together">下载</span></li>
+        {%for file in files%}
+            <li><p class="cs1-content">{{file.file.name}}</p><a href="{%url 'Content.views.downLoad' file.id%}"><span class="cs1-together">下载</span></a></li>
+        {%endfor%}
         </ul>
     </div>
-    <a href="content.html"><input class="start-s" type="button" value="开始学习" onclick="" /></a>
-    <a href="test.html"><input class="start-t" type="button" value="开始测试" onclick="" /></a>
+    <a href="/test"><input class="start-t" type="button" value="开始测试"/></a>
 </div>
+<script>
+var arr = [];
+var brr = [];
+for(var i = 0;i<$(".cs1-content").length;i++){
+    var str = $(".cs1-content")[i].innerHTML;
+    arr.push(str)
+}
+for(var i= 0;i<arr.length;i++){
+
+    var str = arr[i].split("/")[1];
+    brr.push(str);
+}
+$.each(brr,function(i,con){
+    $(".cs1-content")[i].innerHTML = con;
+})
+</script>
 {%endblock%}

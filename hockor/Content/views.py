@@ -27,8 +27,9 @@ def AboutHd(request):
 	return HttpResponse(template.render(context))
 
 def FileHd(request):
+	files = UploadFile.objects.filter(isVideo = False)
 	template = loader.get_template('content/file.html')
-	context = RequestContext(request,{})
+	context = RequestContext(request,{'files':files})
 	return HttpResponse(template.render(context))
 
 def MessageHd(request):
@@ -167,3 +168,24 @@ def getAllScore(request):
 	except:
 		return HttpResponse(simplejson.dumps({'score':'error'}))
 
+def readfile(name):
+	name = 'hockor/media/upload/' + name
+	fp = open(name,'rb')
+	buf = fp.read()
+	fp.close()
+	return buf
+
+def downLoad(request,sid):
+	try:
+		obj = UploadFile.objects.get(id = sid)
+		name = str(obj.file)
+		print name
+		name = name.split('/')[-1]
+		print name
+		buf = readfile(name)
+		#name = name.encode('utf8')
+		response = HttpResponse(buf,mimetype = 'application/octet-stream')
+		response['Content-Disposition'] = 'attachment;filename=%s' % name
+		return response
+	except:
+		raise Http404

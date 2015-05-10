@@ -69,12 +69,17 @@
                    answer : arr
                 },
                 success : function(data){
-                    $(".mask").css("height",height+"px");
-                    $(".mask").show();
-                    $(".score").html(data.score);
-                    $(".close").click(function(){
-                        $(".mask").hide();
+                    if(data.status == 1){
+                        alert("please login");
+                        window.location.href = "/loginhd/"
+                    } else{
+                        $(".mask").css("height",height+"px");
+                        $(".mask").show();
+                        $(".score").html(data.score);
+                        $(".close").click(function(){
+                            $(".mask").hide();
                     })
+                    }
                 },
                 error : function(){
                     alert("error")

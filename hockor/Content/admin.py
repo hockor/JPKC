@@ -4,6 +4,9 @@
 from django.contrib import admin
 from Content.models import UploadFile,Announcement,New,Paper,Exam
 
+class UploadFileAdmin(admin.ModelAdmin):
+	list_display = ['name','isVideo']
+
 class AnnouncemmentAdmin(admin.ModelAdmin):
 	list_display = ['name','content','time']
 
@@ -25,7 +28,7 @@ class PaperAdmin(admin.ModelAdmin):
 	search_fields = ['exam','user__username','person']
 
 
-admin.site.register(UploadFile)
+admin.site.register(UploadFile,UploadFileAdmin)
 admin.site.register(Announcement,AnnouncemmentAdmin)
 admin.site.register(New,NewAdmin)
 admin.site.register(Paper,PaperAdmin)

@@ -39,7 +39,6 @@ $(function(){
                     if (message == "error"){
                         alert("用户名或密码错误!");
                     }else if(message == 'ok'){
-                        alert("OK");
                         $(".for-login").remove();
                         window.location.href = "/"
                     }

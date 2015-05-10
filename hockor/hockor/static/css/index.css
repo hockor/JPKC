@@ -214,8 +214,8 @@ fieldset{
 	color:#fff;
 	background: url("../img/iCourseBtn.png") no-repeat;
 	border:none;
-	margin-top:20px;
-	margin-left:110px;
+	  margin: auto;
+  display: block;
 }
 .start-s:hover,.start-t:hover{
 	font-size: 22px;
@@ -294,6 +294,7 @@ fieldset{
 .testmain {
 	  width: 1000px;
   	  margin: auto;
+  	  min-height: 500px;
 }
 }
 .usertest{

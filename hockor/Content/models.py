@@ -17,6 +17,7 @@ class BackMessage(models.Model):
 class UploadFile(models.Model):
 	name = models.CharField(u"名称",max_length = 30)
 	file = models.FileField(u"文件",upload_to = './upload/')
+	isVideo = models.BooleanField(u"是否为视频",default = False)
 
 	def __unicode__(self):
 		return self.name
