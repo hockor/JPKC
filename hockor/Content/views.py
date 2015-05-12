@@ -17,8 +17,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 def SubjectHd(request):
+	videos = UploadFile.objects.filter(isVideo = True)
 	template = loader.get_template('content/subject.html')
-	context = RequestContext(request,{})
+	context = RequestContext(request,{'videos':videos})
 	return HttpResponse(template.render(context))
 
 def AboutHd(request):
@@ -179,13 +180,21 @@ def downLoad(request,sid):
 	try:
 		obj = UploadFile.objects.get(id = sid)
 		name = str(obj.file)
-		print name
 		name = name.split('/')[-1]
-		print name
 		buf = readfile(name)
-		#name = name.encode('utf8')
 		response = HttpResponse(buf,mimetype = 'application/octet-stream')
 		response['Content-Disposition'] = 'attachment;filename=%s' % name
 		return response
 	except:
 		raise Http404
+
+def getVideo(request):
+	if request.method != 'POST' or not request.is_ajax():
+		raise Http404
+	id = request.POST.get('id')
+	try:
+		op = UploadFile.objects.get(id = id)
+		path = op.file
+		return HttpResponse(simplejson.dumps({'message':path}))
+	except:
+		return HttpResponse(simplejson.dumps({'message':'error'}))
