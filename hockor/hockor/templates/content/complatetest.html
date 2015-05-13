@@ -12,8 +12,8 @@
 {%endfor%}
 <h3 class="usertest">已做答的题目</h3>
 {%for getscore in getscores%}
-{{get.paper.exam}}
-{{get.score}}
+{{getscore.paper.exam}}
+{{getscore.score}}
 {%endfor%}
 
 </div>

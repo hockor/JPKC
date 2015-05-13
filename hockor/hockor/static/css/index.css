@@ -249,31 +249,24 @@ fieldset{
 	text-align: right;
 }
 /*----------------------------video.html----------------------------------*/
-.video{
-	width:1100px;
-	height:450px;
-	margin:0 auto;
+.sub-video {
+	width: 1200px;
+	margin: auto;
 }
-.video video{
-	width:580px;
-	height:400px;
-	float:left;
+.sub-video li {
+	display: inline-block;
+	  margin: 15px 42px;
 }
-.video .introduce{
-	float: left;
-	width:420px;
-	padding:50px;
-	color:#956872;
-	font-size: 16px;
-	line-height: 20px;
+.sub-video video {
+	width: 300px;
+	height: 168px;
+	display: block;
+
 }
-.video .introduce .title{
-	font-size: 20px;
-	font-weight: bold;
-	line-height: 20px;
-}
-.video .introduce .content{
-	line-height: 25px;
+.sub-video span {
+	display: block;
+	text-align: center;
+	margin-top: 10px;
 }
 /*-----------------------------test.html-----------------------------------*/
 .Alltest {
@@ -281,7 +274,7 @@ fieldset{
 	margin: auto;
 	height: 600px;
 }
-.testenter {
+.testenter , .testlist {
 	width: 400px;
 	display: inline-block;
 	height: 400px;
@@ -290,6 +283,12 @@ fieldset{
 	line-height: 400px;
 	border: 2px solid #A39582;
 	margin: 46px;
+}
+
+.testlist a {
+	height: 20px;
+	font-size: 16px;
+	display: block;
 }
 .testmain {
 	  width: 1000px;
@@ -943,8 +942,12 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 	position: relative;
 }
 .mess-date {
-	width: 180px;
+	width: 280px;
 	position: relative;
+}
+.replyword {
+	background: #ccc;
+	margin: 8px 10px;
 }
 .reply {
 	color:#817F7F;

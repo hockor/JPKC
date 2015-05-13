@@ -2,9 +2,32 @@
 {%block t_body%}
 
 <div class="Alltest">
-    <a class="testenter" href="{%url 'Content.views.NewTestHd'%}">新测验</a>
+<div class="testlist">
+    {%for test in tests%}
+    <a href="{%url 'Content.views.NewTestHd' test.id%}">
+        
+        {{test.exam}}
+        {{test.person}}
+        {{test.totalscore}}
+        {{test.time}}
+        
+    </a>
+    {%endfor%}
+    </div>
     <a class="testenter" href="{%url 'Content.views.ComplateTestHd'%}">已完成测验</a>
 </div>
-
+<script>
+/*$(".testlist p").click(function(){
+    var id = $(this).attr("dataid");
+    $.ajax({
+        url : "/test/"+id,
+        type : "get",
+        success :  function(data){
+            console.log(data)
+        }
+    })
+})
+    */
+</script>
 {%endblock%}
 

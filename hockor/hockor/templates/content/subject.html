@@ -1,31 +1,24 @@
 {%extends 'base.html'%}
 
 {%block t_body%}
-<ul>
-    <li class="classify">
-        <p>电商类</p>
-        <ul>
-            <li><a href="">c++</a></li>
-            <li><a href="list.html">电子商务概论</a></li>
-            <li><a href="">计算机网络技术</a></li>
-            <li><a href="">数据库</a></li>
-            <li><a href="">操作系统</a></li>
-        </ul>
-    </li>
-    <li class="c-classify">
-        <p>计算机类</p>
-    </li>
-    <li class="c-classify">
-        <p>语言类</p>
-    </li>
-    <li class="c-classify">
-        <p>经济类</p>
-    </li>
-    <li class="c-classify">
-        <p>数学类</p>
-    </li>
-    <li class="c-classify">
-        <p>材料类</p>
-    </li>
+
+<ul class="sub-video">
+   {%for video in videos%}
+   <li>
+       <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="300" height="176"
+             poster="http://video-js.zencoder.com/oceans-clip.png"
+             data-setup="{}">
+           <source src="{{MEDIA_URL}}{{video.file}}" type='video/mp4' />
+           <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+           <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+         </video>
+         <span class="closeVideo">{{video.name}}</span>
+   </li>
+ {%endfor%}
 </ul>
+
+
+<script>
+
+</script>
 {%endblock%}

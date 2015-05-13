@@ -50,6 +50,7 @@ class Paper(models.Model):
 	person = models.CharField(u"出题人",max_length = 20)
 	totalscore = models.IntegerField(u"总分")
 	time = models.DateTimeField(u"时间",default = datetime.now)
+	flag = models.BooleanField(default = False)
 
 	class Meta:
 		verbose_name = u"试卷" 

@@ -1,14 +1,8 @@
 {%extends 'base.html'%}
 {%block t_body%}
 <div class="testmain">
-    {%for test in tests%}
-    <h3 testid={{test.id}} class="usertest">
-        {{test.exam}}
-        {{test.person}}
-        {{test.totalscore}}
-        {{test.time}}
-    </h3>
-    {%endfor%}
+    
+    <h3 testid={{sid}} class="usertest"></h3>
     <fieldset class="question">
     </fieldset>
     <input type="submit" value="提交" id="test" />

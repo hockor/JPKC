@@ -15,22 +15,48 @@
 				<span class='ok-mess'>确认</span>
 			</div>
 			<div class="cc">
-				<div class="ds-post-main">
+			{%for msg in message%}
+				<div class="ds-post-main" dataid="{{msg.id}}">
 					<div class="ds-avatar"></div>
 					<div class="ds-comment-body">
-						<span class="pub-user">hockor</span> 问：
-						<p>"是不是上了5天班了？"、"以为是周末了？"、"今天才周三，哈哈！"。</p>
-						<p>"是不是要考试啦？"、"还没复习吧？"、"等死吧，哈哈哈哈"。</p>
-						<p>"在公司坐了一上午了吧"、"忙得没时间吃午饭吧？"、"我已经吃过了，哈哈哈哈！"</p>
+						<span class="pub-user">{{msg.name}}</span> 问：
+						<p>{{msg.message}}</p>
 						<div class="mess-other">
-							<span class="mess-date">2015.03.22 10:25:55</span>
+							<span class="mess-date">{{msg.time}}</span>
 							<a href="javascript:;" class="reply" display="none">回复</a>
+						</div>
+						
+						<div class="replyword">
+							{%for bsg in backmessage%}
+							    {%if msg.id == bsg.msg_id%}
+							    {{bsg.contents}}
+							    {{bsg.time}}
+							    {%endif%}
+			    				{%endfor%}
 						</div>
 					</div>
 				</div>
-			</div>
+				{%endfor%}
+		</div>
+				
 	</div>
 	<script>
+
+	var csrftoken = $.cookie('csrftoken');
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    //获取公告
 	$.ajax({
 		url: "/announcementlist",
 		type : "GET",
@@ -48,6 +74,112 @@
 		}
 
 	})
+
+
+	//tijiao  liuyan
+	$(".ok-mess").click(function(){
+		var  message = $(".mess-input textarea").val();
+		alert(message)
+		$.ajax({
+			url: "{%url 'Content.views.getMessage'%}",
+			type : "POST",
+			data : {
+				message : message
+			},
+			success : function(data){
+				var data = JSON.parse(data);
+				var str = $('<div class="ds-post-main"><div class="ds-avatar"></div><div class="ds-comment-body"><span class="pub-user">'+data.name+'</span> 问：<p>"'+data.message+'"</p><div class="mess-other"><span class="mess-date">'+data.message_time+'</span><a href="javascript:;" class="reply" display="none">回复</a></div></div></div>');
+				$(".ds-post-main").before(str);
+			},
+			error : function(){
+				alert("error")
+			}
+		})
+	})
+	
+
+	//留言等功能
+	var reply = $("<div class='reply-it' ><textarea  placeholder='回复留言'></textarea><div>"+
+	                    "<span class='cancle-reply'>取消</span>"+
+	                    "<span class='ok-reply'>确认</span>"+
+	                "</div></div>");
+	var flag = false;
+		$(".reply").bind("click",function(){
+		    if(!flag){
+		    	$(this).parent().parent().parent().append(reply);
+		        //$(".messlist").append(reply);
+		        $(".cancle-reply").click(function(){
+		            $(".reply-it").remove();
+		            falg = false;
+		            return;
+		        });
+
+		        $(".ok-reply").click(function(){
+		            //回复内容
+		            var replyvalue1 = $(this).parent().parent().find("textarea");
+		            var replyValue =$(this).parent().parent().find("textarea").val();
+		            var id = $(this).parent().parent().parent().attr("dataid");
+		            //alert(replyValue+":"+id);
+		            var re = /傻比|煞笔|傻逼|尼玛|艹|操|日|shit|fuck|bitch/ig;
+
+		            //敏感词处理
+		            replyValue = replyValue.replace(re,function(str){
+		                var result = "";
+		                for(var i=0;i < str.length;i++){
+		                    result += '*';
+		                }
+		                return result;
+		            });
+
+		            //console.log(replyValue);
+		            if(replyValue){
+		            	var par = $(this).parent().parent().parent().find(".replyword");
+		            	var co =  $(this).parent().parent();
+		                $.ajax({
+		                    url:"/backmessage/",
+		                    type: 'POST',
+		                    contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+		                    data:{
+		                        id : id,
+		                        contents : replyValue
+		                    },
+		                    dataType: 'json',
+		                    error: function(){
+		                        alert('请重新提交！');
+		                    },
+		                    success:function(data){
+		                    	console.log(par)
+		                        	var str = $('老师回复:<p>'+data.contents+'</p><span>'+data.message_time+'</span>');
+		                        		par.append(str);
+		                        		co.hide();
+		                        
+		                    }
+		                });
+		            } else {
+		                alert("请输入回复内容!");
+		            }
+		        })
+		    }
+		})
+	
+
+	/*$.ajax({
+		var replyword = $(".reply-it textarea").val();
+		url: "/",
+		type : "POST",
+		success : function(data){
+			//console.log(data)
+			$.each(data.data,function(i,con){
+				var test = $('<h3>'+data.data[i].name+'('+data.data[i].time+')</h3><li class="pub-mess">'+data.data[i].content+'</li>');
+				$(".public ol").append(test);
+				console.log(test)
+			})
+
+		},
+		error : function(){
+			alert("network error!")
+		}
+	})*/
 	</script>
 {%endblock%}
 

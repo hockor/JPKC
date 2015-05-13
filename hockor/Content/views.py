@@ -16,6 +16,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
+
 def SubjectHd(request):
 	videos = UploadFile.objects.filter(isVideo = True)
 	template = loader.get_template('content/subject.html')
@@ -41,37 +42,41 @@ def MessageHd(request):
 	return HttpResponse(template.render(context))
 
 def TestHd(request):
-	tests = Paper.objects.all()
+	tests = Paper.objects.filter(flag = False)
 	getscores = FinishExam.objects.filter(user_id = request.user.id)
 	template = loader.get_template('content/test.html')
 	context = RequestContext(request,{'tests':tests,'getscores':getscores})
 	return HttpResponse(template.render(context))
 
-def NewTestHd(request):
-	tests = Paper.objects.all()
+def NewTestHd(request,sid):
+	tests = Paper.objects.filter(flag = False)
 	template = loader.get_template('content/newtest.html')
-	context = RequestContext(request,{'tests':tests})
+	context = RequestContext(request,{'tests':tests,'sid':sid})
 	return HttpResponse(template.render(context))
 
 def ComplateTestHd(request):
+	getscores = FinishExam.objects.filter(user_id = request.user.id)
 	template = loader.get_template('content/complatetest.html')
-	context = RequestContext(request,{})
+	context = RequestContext(request,{'getscores':getscores})
 	return HttpResponse(template.render(context))
 
-def stMsg(username,message):
+def stMsg(username,message,message_time):
 	try:
-		obj = Message(name = username,message = message)
+		obj = Message(name = username,message = message,time = message_time)
 		obj.save()
 		return True
 	except:
 		return False
 
+@login_required
 def getMessage(request):
-	if request.method != 'post' or not request.is_ajax():
+	if request.method != 'POST' or not request.is_ajax():
 		raise Http404
 	message = request.POST.get("message")
-	if stMsg(request.user.username,message):
-		return HttpResponse(simplejson.dumps({'message':'ok'}))
+	message_time = datetime.now()
+	name = request.user.username
+	if stMsg(name,message,message_time):
+		return HttpResponse(simplejson.dumps({'message':message,'name':name,'message_time':message_time.strftime("%Y-%m-%d %H:%M:%S")}))
 	else:
 		return HttpResponse(simplejson.dumps({'message':'error'}))
 
@@ -88,8 +93,9 @@ def backMessage(request):
 		raise Http404
 	msgid = request.POST.get("id")
 	contents = request.POST.get("contents")
+	message_time = datetime.now()
 	if stBackMsg(msgid,contents):
-		return HttpResponse(simplejson.dumps({'message':'ok'}))
+		return HttpResponse(simplejson.dumps({'contents':contents,'message_time':message_time.strftime("%Y-%m-%d %H:%M:%S")}))
 	else:
 		return HttpResponse(simplejson.dumps({'message':'error'}))
 
@@ -125,6 +131,9 @@ class ExamDetail(APIView):
 		return score,test
 
 	def post_exam(self,score,pk,user):
+		op = Paper.objects.get(id = pk)
+		op.flag = True
+		op.save()
 		if FinishExam.objects.filter(user_id = user.id,paper_id = pk).count()>0:
 			obj = FinishExam.objects.get(user_id = user.id,paper_id = pk)
 			obj.score = score
@@ -182,19 +191,9 @@ def downLoad(request,sid):
 		name = str(obj.file)
 		name = name.split('/')[-1]
 		buf = readfile(name)
+		#name = name.encode('utf8')
 		response = HttpResponse(buf,mimetype = 'application/octet-stream')
 		response['Content-Disposition'] = 'attachment;filename=%s' % name
 		return response
 	except:
 		raise Http404
-
-def getVideo(request):
-	if request.method != 'POST' or not request.is_ajax():
-		raise Http404
-	id = request.POST.get('id')
-	try:
-		op = UploadFile.objects.get(id = id)
-		path = op.file
-		return HttpResponse(simplejson.dumps({'message':path}))
-	except:
-		return HttpResponse(simplejson.dumps({'message':'error'}))
