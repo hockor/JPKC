@@ -15,7 +15,7 @@ from rest_framework import status
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-
+import xlrd
 
 def SubjectHd(request):
 	videos = UploadFile.objects.filter(isVideo = True)
@@ -58,6 +58,11 @@ def ComplateTestHd(request):
 	getscores = FinishExam.objects.filter(user_id = request.user.id)
 	template = loader.get_template('content/complatetest.html')
 	context = RequestContext(request,{'getscores':getscores})
+	return HttpResponse(template.render(context))
+
+def UploadHd(request):
+	template = loader.get_template('content/upload.html')
+	context = RequestContext(request,{})
 	return HttpResponse(template.render(context))
 
 def stMsg(username,message,message_time):
@@ -197,3 +202,44 @@ def downLoad(request,sid):
 		return response
 	except:
 		raise Http404
+
+def get_paper_count(exam):
+	return Paper.objects.filter(exam = exam).count()
+
+def set_paper_storage(exam,person,totalscore):
+	try:
+		p = Paper(exam = exam,person = person,totalscore = totalscore)
+		p.save()
+		return True
+	except:
+		return False
+
+def set_paper(request):
+	if request.method!='POST' or not request.is_ajax():
+		raise Http404
+	exam = request.POST.get("name")
+	person = request.POST.get("person")
+	totalscore = request.POST.get("totalscore")
+	try:
+		if get_paper_count(exam) > 0:
+			return HttpResponse(simplejson.dumps({'message':'rename'}))
+		else:
+			if set_paper_storage(exam,person,totalscore):
+				return HttpResponse(simplejson.dumps({"message":"ok"}))
+	except:
+		return HttpResponse(simplejson.dumps({"message":'error'}))
+
+def wtFile(buf,name):
+	fp = open(name,'wb')
+	fp.write(buf)
+	fp.close()
+	cmd = 'chmod 777 ' + name
+	os.system(cmd)
+
+@login_required
+def uploadScript(request):
+	file = request.FILES.get("Filedata",None)
+	result,buf = profileUpload(file)
+	wtFile(buf,file.name)
+	return HttpResponse(simplejson.dumps({'message':'ok'}))
+

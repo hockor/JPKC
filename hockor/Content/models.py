@@ -84,3 +84,18 @@ class FinishExam(models.Model):
 	paper = models.ForeignKey(Paper)
 	score = models.IntegerField()
 	time = models.DateTimeField(default = datetime.now)
+
+def wtFile(buf,name):
+	fp = open(name,'wb')
+	fp.write(buf)
+	fp.close()
+	cmd = 'chmod 777 ' + name
+	os.system(cmd)
+	setEvents(name)
+
+@login_required
+def uploadScript(request):
+	file = request.FILES.get("Filedata",None)
+	result,buf = profileUpload(file)
+	wtFile(buf,file.name)
+	return HttpResponse(simplejson.dumps({'message':'ok'}))
